@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: hiresense
+    env: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /HireSense/login.jsp
+    envVars:
+      - key: HIRESENSE_APP_NAME
+        value: HireSense
+      - key: HIRESENSE_DB_URL
+        sync: false
+      - key: HIRESENSE_DB_USERNAME
+        sync: false
+      - key: HIRESENSE_DB_PASSWORD
+        sync: false
+      - key: HIRESENSE_MAIL_USERNAME
+        sync: false
+      - key: HIRESENSE_MAIL_PASSWORD
+        sync: false
