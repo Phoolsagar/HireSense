@@ -6,14 +6,18 @@ import javax.mail.Session;
 
 
 public class MailConfig {
-	
 
-    
-	private static final String USERNAME = "hiresensegroup@gmail.com";
-    private static final String PASSWORD = "fhal twlu ewvt mznf";
-    
-    
-    
+    private static final String USERNAME = getConfig("HIRESENSE_MAIL_USERNAME", "");
+    private static final String PASSWORD = getConfig("HIRESENSE_MAIL_PASSWORD", "");
+
+    private static String getConfig(String envKey, String defaultValue) {
+        String value = System.getenv(envKey);
+        if (value == null || value.isBlank()) {
+            return defaultValue;
+        }
+        return value;
+    }
+
 	public static Session getSession() {
 	   Properties prop = new Properties();
 	   prop.put("mail.smtp.host", "smtp.gmail.com");

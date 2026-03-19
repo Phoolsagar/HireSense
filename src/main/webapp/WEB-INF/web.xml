@@ -7,15 +7,15 @@
 	<!-- Database credentials -->
 	<context-param>
 		<param-name>url</param-name>
-		<param-value>jdbc:mysql://localhost:3306/hiresense_db</param-value>
+		<param-value>jdbc:mysql://localhost:3306/hiresense_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</param-value>
 	</context-param>
 	<context-param>
 		<param-name>username</param-name>
-		<param-value>root</param-value>
+		<param-value>hiresense</param-value>
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>phool</param-value>
+		<param-value>hiresense123</param-value>
 	</context-param>
 
 	<!-- Application name -->

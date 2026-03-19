@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  hiresense:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+    environment:
+      HIRESENSE_APP_NAME: ${HIRESENSE_APP_NAME:-HireSense}
+      HIRESENSE_DB_URL: jdbc:mysql://mysql:3306/hiresense_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      HIRESENSE_DB_USERNAME: ${HIRESENSE_DB_USERNAME}
+      HIRESENSE_DB_PASSWORD: ${HIRESENSE_DB_PASSWORD}
+      HIRESENSE_MAIL_USERNAME: ${HIRESENSE_MAIL_USERNAME}
+      HIRESENSE_MAIL_PASSWORD: ${HIRESENSE_MAIL_PASSWORD}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: hiresense_db
+      MYSQL_USER: ${HIRESENSE_DB_USERNAME}
+      MYSQL_PASSWORD: ${HIRESENSE_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${HIRESENSE_DB_USERNAME}", "-p${HIRESENSE_DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

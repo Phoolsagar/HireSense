@@ -1,0 +1,8 @@
+.git
+.gitignore
+.metadata
+.settings
+.classpath
+.project
+README.md
+src/main/webapp/WEB-INF/classes
