@@ -91,67 +91,32 @@ Integrated JavaMail API to send:
 ## 🚀 How To Run The Project
 
 1. Clone the repository
-   
+
+```
 git clone https://github.com/PhoolSagar/HireSense.git
+```
 
 
-3. Import into Eclipse as Existing Maven Project
+2. Import into Eclipse as Existing Maven Project
 
-4. Configure:
+3. Configure:
+   
+
+```
 - Database connection in DBConnection.java
 - Email credentials in MailConfig.java
+```
 
 4. Deploy on Apache Tomcat
 
 5. Run in browser:
 
+```
 http://localhost:8080/HireSense
+```
 
 ---
 
-## 🌐 Host It (Docker)
-
-This repository now includes a containerized deployment setup:
-- `Dockerfile`
-- `docker-compose.yml`
-- `.env.example`
-
-### 1. Configure environment variables
-
-Create `.env` from `.env.example` and set real mail credentials:
-
-```bash
-HIRESENSE_MAIL_USERNAME=your_email@gmail.com
-HIRESENSE_MAIL_PASSWORD=your_gmail_app_password
-```
-
-### 2. Run with Docker Compose
-
-From project root (`HireSense/`):
-
-```bash
-docker compose --env-file .env up -d --build
-```
-
-### 3. Open the app
-
-```text
-http://localhost:8080/HireSense/login.jsp
-```
-
-### 4. Runtime configuration keys
-
-The app reads these environment variables at startup:
-- `HIRESENSE_DB_URL`
-- `HIRESENSE_DB_USERNAME`
-- `HIRESENSE_DB_PASSWORD`
-- `HIRESENSE_MAIL_USERNAME`
-- `HIRESENSE_MAIL_PASSWORD`
-- `HIRESENSE_APP_NAME`
-
-If not provided, it falls back to values in `WEB-INF/web.xml`.
-
----
 
 ## 🔒 Security Features
 
